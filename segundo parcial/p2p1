@@ -1,0 +1,50 @@
+/*
+Autor: Gabriela_Xol
+Compilador: gcc (Ubuntu 9.2.1-9ubuntu2) 9.2.1 20191008
+Compilado: gcc p2p1.c -o p2p1.c
+Fecha: mar may 22:05:40 CST 2022
+Librerias: stdio, etc.
+Resumen: El siguiente programa realiza una grafica para la recta de regresión lineal de datos que comparan el valor del euro frente al dolar a través de los años.
+Entradas: Vectores con decimales
+Salidas: Decimales
+*/
+  
+//Librerias
+#include <stdio.h>
+#include <math.h>
+
+//Enumerar los pasos del pseudocodigo
+void main(void)
+{
+        //Se definen las variables
+        float x[14]={2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019};
+        float y[14]={1.003,0.981,0.968,0.923,0.880,0.856,0.847,0.826,0.804,0.783,0.792, 0.750,0.726,0.738};
+        int n=5;
+        float sumx=0, sumy=0, sumx2=0, sumxy=0, sumy2=0;
+        float m, b, r;
+        int i;
+        //Realizacion de las sumatorias
+        for(i=0;i<=5;i++){
+                sumx=sumx+x[i];
+                sumy=sumy+y[i];
+                sumx2=sumx2+(x[i]*x[i]);
+                sumy2=sumy2+(y[i]*y[i]);
+                sumxy=sumxy+(x[i]*y[i]);
+        }
+	//Se calcula el valor de la pendiente y el intercepto
+        //pendiente m
+        m=((n*sumxy)-(sumx*sumy))/((n*sumx2)-(sumx*sumx));
+        //printf("pendiente %f\n",m);//
+        b=(sumy-(m*sumx))/n;
+        //Se calcula el valor de r
+        r=((n*sumxy)-(sumx*sumy))/sqrt(((n*sumx2)-(sumx*sumx))*((n*sumy2)-(sumy*sumy)));
+        //Se presenta el resultado de la aproximacion
+        printf("La aproximacion por minimos cuadrados es:\n y=(%f+-%f)x+(%f+-%f)\n",m,b);
+        //Se presenta el valor de correlacion
+        printf("El coeficiente de correlacion es:\n %f",r);
+
+        //Se calcula el año para el que el euro no valdrá nada
+        float x0;
+        x0=sumy-r*sumx;
+        printf("\nEl año en el que el euro no valdrá nada es:\n %f+-%f\n",x0);
+}

@@ -1,0 +1,78 @@
+PARCIAL 2
+
+ -PROBLEMA 1 (VALOR DE LA MONEDA)
+
+Se de da un set de datos que muestra el comportamiento del dolar frente 
+al euro a lo largo de los años y se solicita un programa que que cumpla con:
+
+
+  - Una gráfica que compare los valores tabulados y la recta que mejor 
+    aproxima el decrecimiento.
+
+  - Estime el año en el que el dolar no tendrá valor.
+
+METODOLOGIA Y ABSTRACCION DEL PROBLEMA:
+
+Para resolver este problema se hará un programa en lenguaje C que hará uso de 
+minimos cuadrados para calcular la recta de regresión lineal que minimice los 
+residuos, es decir, que encontrar la recta que mejor aproxime el
+decaimiento del dolar con respecto al euro, se graficara dicha recta en 
+constraste con los datos en la tabla, para comparar el valor obtenido por el
+programa.
+Para estimar el año en el que el dolar no tendrá valor, se hará uso de una
+ecuación, que dadas las condiciones calcule el punto donde dicha recta 
+interseca el eje que representa los años.
+
+* El algoritmo para este problema es:
+
+ 1. Definir las variables
+    float x[14]=[2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,
+                 2018,2019]
+
+    float y[14]=[1.003,0.981,0.968,0.923,0.880,0.856,0.847,0.826,0.804,0.783
+                 0.792, 0.750,0.726,0.738]
+    float sumx=0, sumy=0, sumxy=0, m, b, r, int i, intn= 14
+
+
+ 2. Realizar las sumatorias utilizando un ciclo for desde 1=0 hasta i<=14,
+    donde cada su,a estará definida como:
+   
+
+    sumx=sumx+x[i]
+    sumy=sumy+y[i]
+    sumx2=sumx2=sumx2+(x[i]*x[i])
+    sumy2=sumy2+(y[i]∗y[i])
+    sumxy = sumxy + (x[i] ∗ y[i])
+
+ 3. Calcular el valor de la pendiente y el intersecto con sus errores:
+    
+     m = ((n ∗ sumxy) − (sumx ∗ sumy))/((n ∗ sumx2) − (sumx ∗ sumx))
+    
+     b = (sumy − (m ∗ sumx))/n
+
+ 4. Calcular el coeficiente de correlacion
+
+     r = ((n ∗ sumxy) − (sumx ∗ sumy))/sqrt(((n ∗ sumx2) − (sumx ∗ sumx)) ∗...
+         ((n ∗ sumy2) − (sumy ∗ sumy)))
+
+
+ 5. Presentar el resultado de la forma y = mx + b.
+
+ 6. Calcular el valor de x (año) para el que el dolar no tiene ningun valor.
+    
+    x0=sumy-r*sumx 
+
+El diagrama de flujo de este problema se encuentra en la carpeta como "DF1",
+mientras que la gráfica con los resultados del programa se encuentra como "GP1".
+
+
+
+ -PROBLEMA 2 (BISECCION - NEWTON RAPHSON)
+Utilizando un método numérico, encuentre la raíz de la ecuación.
+     
+
+     - f(x)=0.1*(x*x)+x * ln(x)
+
+Y realizar la gráfica de la ecuación y comparar el resultado obtenido con
+el programa realizado en C
+
